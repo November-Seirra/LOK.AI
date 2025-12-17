@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     # Database
     POSTGRES_SERVER: str = "localhost"
     POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "postgres"
+    POSTGRES_PASSWORD: str = "pokhara2025"
     POSTGRES_DB: str = "lokai"
     SQLALCHEMY_DATABASE_URI: Optional[str] = None
 
