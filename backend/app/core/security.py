@@ -23,3 +23,13 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
+
+def verify_token(token: str, credential_exception) -> str:
+    try:
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("sub")
+        if email is None:
+            raise credential_exception
+        return email
+    except jwt.JWTError:
+        raise credential_exception

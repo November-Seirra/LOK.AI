@@ -63,3 +63,53 @@ def login_access_token(
         ),
         "token_type": "bearer",
     }
+
+@router.post("/forgot-password")
+def forgot_password(
+    email_in: schemas.UserLogin, # reusing schema just for email
+    db: Session = Depends(get_db)
+) -> Any:
+    """
+    Password Reset Request.
+    """
+    user = db.query(models.User).filter(models.User.email == email_in.email).first()
+    if not user:
+        # Return 200 even if user not found to prevent user enumeration
+        return {"message": "If the email exists, a reset link has been sent."}
+    
+    # Generate reset token (short lived, e.g., 15 min)
+    reset_token = security.create_access_token(user.email, expires_delta=timedelta(minutes=15))
+    
+    # TODO: Send email
+    print(f"------------ PASSWORD RESET LINK ------------")
+    print(f"Token: {reset_token}")
+    print(f"In production, send this link: https://lokai.com/reset-password?token={reset_token}")
+    print(f"---------------------------------------------")
+    
+    return {"message": "If the email exists, a reset link has been sent."}
+
+@router.post("/reset-password")
+def reset_password(
+    token: str,
+    new_password: str,
+    db: Session = Depends(get_db)
+) -> Any:
+    """
+    Reset Password with token.
+    """
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    email = security.verify_token(token, credentials_exception)
+    
+    user = db.query(models.User).filter(models.User.email == email).first()
+    if not user:
+        raise credentials_exception
+    
+    user.password_hash = security.get_password_hash(new_password)
+    db.add(user)
+    db.commit()
+    
+    return {"message": "Password updated successfully."}
