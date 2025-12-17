@@ -1,11 +1,7 @@
-from typing import List, Optional
-from sqlmodel import SQLModel, Field, Relationship
-from sqlalchemy import Column,String
-from app.model.mixins import TimeMixin
+from uuid import UUID
+from sqlmodel import SQLModel, Field
 
-class UsersRole(SQLModel, TimeMixin, table = True):
-    __tablename__ = "users_role"
-
-    users_id: Optional[str] = Field(default = None, foreign_key = "users.id",primary_key= True)
-    role_id: Optional[str] = Field(default = None, foreign_key = "roles.id",primary_key= True)
-
+class UserRole(SQLModel, table=True):
+    __tablename__ = "user_role"
+    user_id: UUID = Field(foreign_key="users.id", primary_key=True)
+    role_id: UUID = Field(foreign_key="roles.id", primary_key=True)

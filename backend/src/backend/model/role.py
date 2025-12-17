@@ -1,16 +1,14 @@
-from typing import Optional
-from sqlmodel import SQLModel, Field
-from sqlalchemy import Column,String
-from app.model.mixins import TimeMixin
-from app.model.user_role import UsersRole
+from typing import List, Optional, TYPE_CHECKING
+from sqlmodel import Relationship, SQLModel
+from backend.model.mixins import UUIDMixin, TimeMixin
+from backend.model.user_role import UserRole
 
+if TYPE_CHECKING:
+    from backend.model.users import Users
 
-
-class Role(SQLModel, TimeMixin, table = True):
-    __tablename__ = "role"
-
-    id: Optional[str] = Field(default = None, primary_key = True,nullable = False)
-    role_name:str
+class Role(UUIDMixin, TimeMixin, table=True):
+    __tablename__ = "roles"
+    role_name: str
+    description: Optional[str] = None
     
-    users:List["Users"] = Relationship(back_populates="roles",link_model = UsersRole)
-    
+    users: List["Users"] = Relationship(back_populates="roles", link_model=UserRole)

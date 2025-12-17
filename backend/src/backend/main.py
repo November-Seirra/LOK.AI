@@ -1,6 +1,9 @@
 import uvicorn
 from fastapi import FastAPI, APIRouter
 from backend.config import db
+from backend.model.users import Users
+from backend.model.role import Role
+from backend.model.user_role import UserRole
 
 def init_app():
     db.init()

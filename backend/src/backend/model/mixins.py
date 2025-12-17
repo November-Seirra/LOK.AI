@@ -1,11 +1,10 @@
+import uuid
 from datetime import datetime
-from pydantic import BaseModel,Field
-from sqlalchemy import Column, DateTime
-from sqlmodel import Field
+from sqlmodel import Field, SQLModel
 
-class TimeMixin(BaseModel):
-    """"Mxin to for datetime value of when the entiry was created and when it was last modified"""
+class TimeMixin(SQLModel):
     created_at: datetime = Field(default_factory=datetime.utcnow)
-    modified_at: datetime = Field(
-        sa_column = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow,nullable = False)
-    )
+    updated_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+
+class UUIDMixin(SQLModel):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
