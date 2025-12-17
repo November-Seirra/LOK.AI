@@ -13,7 +13,8 @@ dependencies = [
     "sqlalchemy (>=2.0.45,<3.0.0)",
     "sqlmodel (>=0.0.27,<0.0.28)",
     "asyncpg (>=0.31.0,<0.32.0)",
-    "psycopg2 (>=2.9.11,<3.0.0)"
+    "psycopg2 (>=2.9.11,<3.0.0)",
+    "alembic (>=1.17.2,<2.0.0)"
 ]
 
 [tool.poetry]

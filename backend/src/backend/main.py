@@ -1,21 +1,26 @@
 import uvicorn
 from fastapi import FastAPI, APIRouter
+from backend.config import db
 
-app = FastAPI()
+def init_app():
+    db.init()
 
-router = APIRouter()
+    app = FastAPI(
+        title = "Lokai API",
+        description = "Login Page",
+        version = "0.0.1"
+    )
+    @app.on_event("startup")
+    async def startup():
+        await db.create_all()
+    @app.on_event("shutdown")
+    async def shutdown():
+        await db.close()
 
-@router.get("/")
-async def home():
-    return {"message": "Hello World"}
 
+    return app
 
-@router.get("/")
-async def home():
-    return {"message": "Hello World"}
-
-app.include_router(router)
-
+app = init_app()   
 
 def start():
     """""Launched with 'poetry run start' at root level"""
