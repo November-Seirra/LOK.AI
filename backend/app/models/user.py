@@ -19,6 +19,9 @@ class User(Base):
     last_login = Column(TIMESTAMP)
     settings = Column(JSONB, default={})
 
+    # Link to the user's uploaded documents
+    documents = relationship("Document", back_populates="owner", cascade="all, delete-orphan")
+
     # Relationships can be added here
     # documents = relationship("Document", back_populates="user")
     # quizzes = relationship("Quiz", back_populates="user")
