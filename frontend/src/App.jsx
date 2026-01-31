@@ -6,6 +6,8 @@ import Register from './components/auth/Register';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Dashboard from './pages/Dashboard';
 import Documents from './pages/Documents';
+import Quiz from './pages/Quiz';
+import Quizzes from './pages/Quizzes';
 
 import Home from './pages/Home';
 
@@ -52,9 +54,14 @@ function App() {
                 <Documents />
               </ProtectedRoute>
             } />
-            <Route path="/quizzes/*" element={
+            <Route path="/quizzes/:id" element={
               <ProtectedRoute>
-                <Dashboard />
+                <Quiz />
+              </ProtectedRoute>
+            } />
+            <Route path="/quizzes" element={
+              <ProtectedRoute>
+                <Quizzes />
               </ProtectedRoute>
             } />
             <Route path="/progress" element={

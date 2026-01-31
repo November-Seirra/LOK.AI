@@ -50,9 +50,7 @@ const Dashboard = () => {
     ];
 
     const recommendedQuizzes = [
-        { title: 'Current Affairs - Dec 2023', category: 'General Knowledge', questions: '20 Q', difficulty: 'Medium', time: '15 min' },
-        { title: 'Public Administration Basics', category: 'Administrative', questions: '15 Q', difficulty: 'Hard', time: '10 min' },
-        { title: 'Verbal Reasoning Practice', category: 'Aptitude', questions: '25 Q', difficulty: 'Easy', time: '20 min' },
+        
     ];
 
     const handleLogout = async () => {
@@ -138,7 +136,7 @@ const Dashboard = () => {
                         <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
                             Welcome back, {user?.full_name?.split(' ')[0] || 'Scholar'}! 👋
                         </h1>
-                        <p className="text-gray-500 mt-1">You've completed 85% of your weekly study goal. Keep going!</p>
+                        <p className="text-gray-500 mt-1">You've completed 0% of your weekly study goal. Keep going!</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <Link to="/documents">
@@ -190,16 +188,16 @@ const Dashboard = () => {
                                 <div>
                                     <div className="flex justify-between text-sm mb-2 font-medium">
                                         <span>Accuracy Rate</span>
-                                        <span className="text-blue-300">82%</span>
+                                        <span className="text-blue-300">0%</span>
                                     </div>
                                     <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                                        <div className="h-full bg-blue-400 rounded-full shadow-lg" style={{ width: '82%' }}></div>
+                                        <div className="h-full bg-blue-400 rounded-full shadow-lg" style={{ width: '0%' }}></div>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between pt-4 border-t border-white/5">
                                     <div className="space-y-0.5">
                                         <p className="text-xs text-blue-300/60 uppercase font-bold tracking-tighter">Current Streak</p>
-                                        <p className="text-3xl font-black italic">12 Days 🔥</p>
+                                        <p className="text-3xl font-black italic">0 Days 🔥</p>
                                     </div>
                                     <div className="p-4 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
                                         <BarChart3 size={28} className="text-blue-300" />
@@ -237,7 +235,7 @@ const Dashboard = () => {
             {/* Footer */}
             <footer className="bg-white border-t border-gray-100 py-12">
                 <div className="max-w-7xl mx-auto px-4 text-center">
-                    <p className="text-gray-400 text-sm font-medium">© 2025 LokAI Platform — Leveling up Government Exam Preparation</p>
+                    <p className="text-gray-400 text-sm font-medium">© 2025 LokAI Platform — Leveling up  Exam Preparation</p>
                 </div>
             </footer>
         </div>

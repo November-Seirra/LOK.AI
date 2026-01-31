@@ -62,7 +62,7 @@ const Login = () => {
                                 Welcome Back!
                             </h2>
                             <p className="text-blue-100/80 text-sm lg:text-base leading-relaxed">
-                                Continue your journey to government exam success with AI-powered learning tools.
+                                Continue your journey to  exam success with AI-powered learning tools.
                             </p>
                         </div>
 
@@ -80,8 +80,8 @@ const Login = () => {
                     {/* Stats */}
                     <div className="relative z-10 mt-8 lg:mt-0">
                         <div className="bg-gradient-to-r from-blue-600/50 to-purple-600/50 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                            <div className="text-3xl lg:text-4xl font-bold mb-1">10,000+</div>
-                            <div className="text-blue-200 text-sm">Government employees trust LokAI</div>
+                            <div className="text-3xl lg:text-4xl font-bold mb-1">0</div>
+                            <div className="text-blue-200 text-sm">Employees trust LokAI</div>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ const Login = () => {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-gray-900"
-                                        placeholder="employee@gov.np"
+                                        placeholder="employee@gmail.com"
                                     />
                                 </div>
                             </div>

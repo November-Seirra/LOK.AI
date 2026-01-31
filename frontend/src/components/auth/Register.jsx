@@ -108,7 +108,7 @@ const Register = () => {
                     </span>
                 </Link>
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h1>
-                <p className="text-gray-500">Join thousands of government employees preparing for success</p>
+                <p className="text-gray-500">Join thousands of  employees preparing for success</p>
             </div>
 
             {/* Form Card */}
@@ -154,7 +154,7 @@ const Register = () => {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Government Email <span className="text-red-500">*</span>
+                                    Email <span className="text-red-500">*</span>
                                 </label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -168,7 +168,7 @@ const Register = () => {
                                         placeholder="name@gov.np"
                                     />
                                 </div>
-                                <p className="text-xs text-blue-600 mt-1">Must be an official government email</p>
+                                <p className="text-xs text-blue-600 mt-1">Must be an valid email address</p>
                             </div>
                         </div>
                     </div>
@@ -179,7 +179,7 @@ const Register = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Department <span className="text-red-500">*</span>
+                                    Organization <span className="text-red-500">*</span>
                                 </label>
                                 <div className="relative">
                                     <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -190,7 +190,7 @@ const Register = () => {
                                         onChange={handleChange}
                                         className="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all appearance-none cursor-pointer"
                                     >
-                                        <option value="">Select Department</option>
+                                        <option value="">Select organization</option>
                                         {departments.map((dept) => (
                                             <option key={dept} value={dept}>{dept}</option>
                                         ))}
@@ -298,7 +298,7 @@ const Register = () => {
                             <a href="#" className="text-blue-600 hover:underline font-medium">Terms & Conditions</a>
                             {' '}and{' '}
                             <a href="#" className="text-blue-600 hover:underline font-medium">Privacy Policy</a>.
-                            {' '}I confirm that I am a government employee with a valid official email address.
+                            {' '}I confirm that I am a  employee with a valid  email address.
                         </label>
                     </div>
 

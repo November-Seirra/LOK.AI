@@ -21,16 +21,16 @@ def get_current_user(
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        # Decode the token to get the user's email
+        # Decode the token to get the user's ID
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
-        email: str = payload.get("sub")
-        if email is None:
+        user_id: str = payload.get("sub")
+        if user_id is None:
             raise credentials_exception
     except JWTError:
         raise credentials_exception
         
-    # Find the user in the database using the email from the token
-    user = db.query(models.User).filter(models.User.email == email).first()
+    # Find the user in the database using the ID from the token
+    user = db.query(models.User).filter(models.User.id == user_id).first()
     if user is None:
         raise credentials_exception
     return user
