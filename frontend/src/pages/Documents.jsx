@@ -397,9 +397,11 @@ const Documents = () => {
                                                     <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
                                                         <FileText size={20} />
                                                     </div>
-                                                    <span className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors cursor-pointer">
-                                                        {doc.filename}
-                                                    </span>
+                                                    <Link to={`/documents/${doc.id}`}>
+                                                        <span className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors cursor-pointer">
+                                                            {doc.filename}
+                                                        </span>
+                                                    </Link>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
@@ -441,8 +443,8 @@ const Documents = () => {
                                                         onClick={() => handleSummarize(doc)}
                                                         disabled={generatingSummaryId === doc.id}
                                                         className={`p-2 rounded-lg transition-all ${generatingSummaryId === doc.id
-                                                                ? 'bg-purple-50 text-purple-600'
-                                                                : 'text-gray-400 hover:text-purple-600 hover:bg-purple-50'
+                                                            ? 'bg-purple-50 text-purple-600'
+                                                            : 'text-gray-400 hover:text-purple-600 hover:bg-purple-50'
                                                             }`}
                                                     >
                                                         {generatingSummaryId === doc.id ? <Loader2 size={18} className="animate-spin" /> : <BookOpen size={18} />}

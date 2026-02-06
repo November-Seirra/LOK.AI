@@ -6,6 +6,7 @@ import Register from './components/auth/Register';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Dashboard from './pages/Dashboard';
 import Documents from './pages/Documents';
+import DocumentDetail from './pages/DocumentDetail';
 import Quiz from './pages/Quiz';
 import Quizzes from './pages/Quizzes';
 
@@ -49,6 +50,11 @@ function App() {
             } />
 
             {/* Placeholder routes for dashboard navigation */}
+            <Route path="/documents/:id" element={
+              <ProtectedRoute>
+                <DocumentDetail />
+              </ProtectedRoute>
+            } />
             <Route path="/documents" element={
               <ProtectedRoute>
                 <Documents />

@@ -22,6 +22,8 @@ class QuestionResponse(BaseModel):
 class QuizResponse(BaseModel):
     id: uuid.UUID
     document_id: uuid.UUID
+    document_name: str = "Unknown Document"
+    difficulty: str = "Medium"
     title: str
     questions: List[QuestionResponse]
     status: str # 'Generating' | 'Ready' | 'Failed'
@@ -91,33 +93,41 @@ async def generate_quiz(request: QuizGenerateRequest) -> Any:
 async def list_quizzes() -> Any:
     """
     List all available quizzes.
-    For mock purposes, returns a static list of sample quizzes.
+    For mock purposes, returns a static list of sample quizzes + any generated in session.
     """
     # Static mock data since we don't have persistence yet
-    mock_list = [
+    static_mocks = [
         {
             "id": uuid.uuid4(),
             "document_id": uuid.uuid4(),
+            "document_name": "Indian Constitution Guide.pdf",
+            "difficulty": "Easy",
             "title": "Indian Constitution: Fundamental Rights",
-            "questions": [], # Omitted for brevity in list view
+            "questions": [],
             "status": "Completed"
         },
         {
             "id": uuid.uuid4(),
             "document_id": uuid.uuid4(),
+            "document_name": "Modern History Vol 1.pdf",
+            "difficulty": "Medium",
             "title": "Modern History: 1857 Revolt",
             "questions": [],
             "status": "In Progress"
         },
-         {
+        {
             "id": uuid.uuid4(),
             "document_id": uuid.uuid4(),
+            "document_name": "Physical Geography.pdf",
+            "difficulty": "Hard",
             "title": "Geography: River Systems of India",
             "questions": [],
             "status": "New"
         }
     ]
-    return mock_list
+    
+    # Combine static mocks with any quizzes generated during this server session
+    return list(MOCK_QUIZZES.values()) + static_mocks
 
 @router.get("/{quiz_id}", response_model=QuizResponse)
 async def get_quiz(quiz_id: uuid.UUID) -> Any:

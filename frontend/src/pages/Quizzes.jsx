@@ -103,8 +103,8 @@ const Quizzes = () => {
                                     key={f}
                                     onClick={() => setFilter(f)}
                                     className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all ${filter === f
-                                            ? 'bg-blue-50 text-blue-600 shadow-sm'
-                                            : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                                        ? 'bg-blue-50 text-blue-600 shadow-sm'
+                                        : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                                         }`}
                                 >
                                     {f}
@@ -146,18 +146,33 @@ const Quizzes = () => {
                             <Card key={quiz.id} className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-gray-100 overflow-hidden">
                                 <div className="p-6">
                                     <div className="flex justify-between items-start mb-4">
-                                        <Badge variant={getStatusColor(quiz.status)} className="mb-2">
-                                            {quiz.status}
-                                        </Badge>
+                                        <div className="flex flex-col gap-2">
+                                            <Badge variant={getStatusColor(quiz.status)}>
+                                                {quiz.status}
+                                            </Badge>
+                                            <Badge variant="neutral" className="bg-blue-50/50 text-blue-600 border-blue-100 flex items-center gap-1">
+                                                <Brain size={10} /> {quiz.difficulty || 'Medium'}
+                                            </Badge>
+                                        </div>
                                         <button className="text-gray-300 hover:text-gray-600 transition-colors">
                                             <MoreVertical size={18} />
                                         </button>
                                     </div>
 
-                                    <div className="mb-6 h-16">
+                                    <div className="mb-4 h-12">
                                         <h3 className="text-lg font-bold text-gray-900 line-clamp-2 leading-tight group-hover:text-blue-600 transition-colors">
                                             {quiz.title}
                                         </h3>
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <Link
+                                            to={`/documents/${quiz.document_id}`}
+                                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-400 hover:text-blue-600 transition-colors"
+                                        >
+                                            <ArrowRight size={12} className="rotate-[315deg]" />
+                                            From: <span className="underline decoration-dotted underline-offset-2">{quiz.document_name || 'Indian Constitution Guide.pdf'}</span>
+                                        </Link>
                                     </div>
 
                                     <div className="flex items-center gap-4 text-xs font-bold text-gray-400 uppercase tracking-wider mb-6">
@@ -173,7 +188,7 @@ const Quizzes = () => {
                                     <div className="flex items-center gap-3">
                                         <Button
                                             onClick={() => navigate(`/quizzes/${quiz.id}`)}
-                                            className="w-full justify-between group-hover:bg-blue-600 group-hover:text-white transition-all"
+                                            className="w-full justify-between group-hover:bg-blue-600 group-hover:text-white transition-all shadow-md group-hover:shadow-blue-500/25"
                                             rightIcon={<ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
                                         >
                                             {quiz.status === 'Completed' ? 'Review Results' : 'Start Quiz'}
@@ -181,8 +196,13 @@ const Quizzes = () => {
                                     </div>
                                 </div>
                                 {quiz.status === 'In Progress' && (
-                                    <div className="h-1 w-full bg-gray-100">
-                                        <div className="h-full bg-amber-500 w-[45%]"></div>
+                                    <div className="h-1.5 w-full bg-gray-100">
+                                        <div className="h-full bg-gradient-to-r from-amber-400 to-orange-500 w-[65%]"></div>
+                                    </div>
+                                )}
+                                {quiz.status === 'Completed' && (
+                                    <div className="h-1.5 w-full bg-gray-100">
+                                        <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 w-full"></div>
                                     </div>
                                 )}
                             </Card>

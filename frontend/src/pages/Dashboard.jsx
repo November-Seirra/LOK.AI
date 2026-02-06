@@ -50,7 +50,9 @@ const Dashboard = () => {
     ];
 
     const recommendedQuizzes = [
-        
+        { title: 'Fundamental Rights - Chapter 1', category: 'Constitution', time: '15 mins', questions: '10 Qs', difficulty: 'Easy', docId: 'doc-1' },
+        { title: 'Directive Principles - Review', category: 'Constitution', time: '20 mins', questions: '15 Qs', difficulty: 'Medium', docId: 'doc-1' },
+        { title: 'Modern History - 1857 Revolts', category: 'History', time: '25 mins', questions: '20 Qs', difficulty: 'Hard', docId: 'doc-2' },
     ];
 
     const handleLogout = async () => {
@@ -142,7 +144,12 @@ const Dashboard = () => {
                         <Link to="/documents">
                             <Button variant="secondary" leftIcon={<Upload size={18} />}>Upload PDF</Button>
                         </Link>
-                        <Button leftIcon={<Plus size={18} />}>New Quiz</Button>
+                        <Button
+                            leftIcon={<Plus size={18} />}
+                            onClick={() => navigate('/documents')}
+                        >
+                            New Quiz
+                        </Button>
                     </div>
                 </div>
 
@@ -211,9 +218,13 @@ const Dashboard = () => {
                             <h3 className="text-lg font-bold text-gray-900 mb-6 border-l-4 border-amber-500 pl-3">Next Challenges</h3>
                             <div className="space-y-4">
                                 {recommendedQuizzes.map((quiz, index) => (
-                                    <div key={index} className="group cursor-pointer p-4 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/50 transition-all">
+                                    <div
+                                        key={index}
+                                        onClick={() => navigate(`/documents/${quiz.docId || 'mock-id'}`)}
+                                        className="group cursor-pointer p-4 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/50 transition-all shadow-sm hover:shadow-md"
+                                    >
                                         <div className="flex justify-between items-start mb-2">
-                                            <Badge variant={index === 1 ? 'danger' : 'neutral'}>{quiz.category}</Badge>
+                                            <Badge variant={index === 2 ? 'danger' : index === 1 ? 'warning' : 'success'}>{quiz.category}</Badge>
                                             <span className="text-xs font-semibold text-gray-400">{quiz.time}</span>
                                         </div>
                                         <h4 className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
@@ -226,7 +237,13 @@ const Dashboard = () => {
                                     </div>
                                 ))}
                             </div>
-                            <Button variant="ghost" className="w-full mt-6 text-sm py-2">Discover More Quizzes</Button>
+                            <Button
+                                variant="ghost"
+                                className="w-full mt-6 text-sm py-2 hover:bg-blue-50 hover:text-blue-600"
+                                onClick={() => navigate('/quizzes')}
+                            >
+                                Discover More Quizzes
+                            </Button>
                         </Card>
                     </div>
                 </div>

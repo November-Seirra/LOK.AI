@@ -219,10 +219,14 @@ const Quiz = () => {
                             <Button onClick={() => window.location.reload()} variant="outline" leftIcon={<RefreshCw size={16} />}>
                                 Retake
                             </Button>
-                            <Button onClick={() => navigate('/documents')} leftIcon={<ArrowLeft size={16} />}>
-                                Documents
+                            <Button
+                                onClick={() => navigate(quiz?.document_id ? `/documents/${quiz.document_id}` : '/documents')}
+                                className="bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/25"
+                                leftIcon={<ArrowLeft size={16} />}
+                            >
+                                {quiz?.document_id ? 'Back to Document' : 'All Documents'}
                             </Button>
-                            <Button variant="ghost" leftIcon={<Share2 size={16} className="text-gray-400" />}>
+                            <Button variant="ghost" className="text-gray-400 hover:text-blue-600" leftIcon={<Share2 size={16} />}>
                                 Share
                             </Button>
                         </div>
