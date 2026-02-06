@@ -84,6 +84,7 @@ const Register = () => {
                 position: formData.position
             });
             navigate('/login');
+
         } catch (err) {
             setError('Registration failed. Please try again.');
         } finally {

@@ -11,7 +11,7 @@ from app import models, schemas
 
 router = APIRouter()
 
-@router.post("/register", response_model=schemas.UserResponse)
+@router.post("/register", status_code=201)
 def register_user(
     user_in: schemas.UserCreate,
     db: Session = Depends(get_db)
@@ -36,7 +36,12 @@ def register_user(
     db.add(user)
     db.commit()
     db.refresh(user)
-    return user
+    return {
+        "status_code": 201,
+        "detail": f"User {user.full_name} registered successfully",
+        "user": schemas.UserResponse.model_validate(user)
+    }
+    
 
 @router.post("/login")
 def login_access_token(
@@ -58,10 +63,13 @@ def login_access_token(
         
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     return {
+        "status_code": 200,
+        "detail": "Login successful",
         "access_token": security.create_access_token(
             user.id, expires_delta=access_token_expires
         ),
         "token_type": "bearer",
+        "user": schemas.UserResponse.model_validate(user)
     }
 
 @router.post("/forgot-password")
